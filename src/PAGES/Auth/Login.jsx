@@ -27,7 +27,7 @@ export default function Login() {
 
     try {
       // API Call
-      const response = await axios.post("http://localhost:8080/user/login", {
+      const response = await axios.post("https://tripvilla-backend.vercel.app/user/login", {
         email: data.email,
         password: data.password,
       });
