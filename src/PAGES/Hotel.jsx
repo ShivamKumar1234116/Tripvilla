@@ -11,7 +11,7 @@ export default function Hotel() {
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/hotel/all");
+      const response = await axios.get("http://tripvilla-backend.vercel.app/hotel/all");
       setHotels(response.data);
       setLoading(false);
     } catch (err) {
