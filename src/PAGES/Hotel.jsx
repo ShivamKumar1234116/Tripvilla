@@ -4,7 +4,7 @@ import HotelList from "../components/HOTELS/HotelList";
 import TrueFocus from "../components/Ui/TrueFocus";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import img from "../../assets/HOTELIMG/hotelchat.png"
+import img from "../assets/HOTELIMG/hotelchat.png"
 export default function Hotel() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
