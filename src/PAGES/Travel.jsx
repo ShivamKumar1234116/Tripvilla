@@ -9,7 +9,7 @@ export default function Travel() {
       <div
         className="relative w-[95%] lg:w-[90%] h-[350px] md:h-[450px] lg:h-[550px] bg-cover bg-center rounded-sm overflow-hidden shadow-2xl"
         style={{
-          backgroundImage: "url('./src/assets/TRAVELIMG/trav3.png')",
+          backgroundImage: "url('../assets/TRAVELIMG/trav3.png')",
         }}
       >
         {/* Dark Gradient Overlay */}
