@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import FilterDes from "../components/TRAVELS/FilterDes";
-
+import img from "../assets/TRAVELIMG/trav3.png"
 export default function Travel() {
   return (
     <section className="flex flex-col justify-center items-center py-14 gap-16">
@@ -9,7 +9,7 @@ export default function Travel() {
       <div
         className="relative w-[95%] lg:w-[90%] h-[350px] md:h-[450px] lg:h-[550px] bg-cover bg-center rounded-sm overflow-hidden shadow-2xl"
         style={{
-          backgroundImage: "url('../assets/TRAVELIMG/trav3.png')",
+          backgroundImage: `url(${img})`,
         }}
       >
         {/* Dark Gradient Overlay */}
