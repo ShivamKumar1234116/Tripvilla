@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import img from "/src/assets/logonew.jpeg";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,133 +11,121 @@ const Navbar = () => {
   useEffect(() => {
     if (!isHomePage) return;
 
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [isHomePage]);
 
   const isActive = (path) => location.pathname === path;
 
+  const navLinks = [
+    { path: "/", label: "Home" },
+    { path: "/HotelFilter", label: "Hotels" },
+    { path: "/RestaurantFilter", label: "Restaurants" },
+    { path: "/packages", label: "Packages 🇮🇳" },
+    { path: "/FilterDes", label: "Travel" },
+    { path: "/feedback", label: "Feedback" },
+  ];
+
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-500 py-4 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isHomePage
           ? scrolled
-            ? "bg-white/80 backdrop-blur-md shadow-lg" // after scroll
-            : "bg-transparent text-white" // transparent on hero
-          : "bg-gray-200/40 backdrop-blur-lg shadow-md text-gray-900 border border-gray-300/30" // 👈 subtle glass effect on other pages
+            ? "bg-white/80 backdrop-blur-xl shadow-md"
+            : "bg-transparent"
+          : "bg-white/90 backdrop-blur-xl shadow-md"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center space-x-3">
-          <img
-            src={img}
-            alt="TripVilla"
-            className="w-12 h-12 rounded-full border-2 border-white shadow-lg"
-          />
-          <span
-            className={`text-4xl font-extrabold italic bg-clip-text text-transparent ${
+      <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+        
+        {/* TEXT LOGO */}
+        <Link to="/" className="flex flex-col leading-tight">
+          <h1
+            className={`text-3xl font-extrabold tracking-wide bg-clip-text text-transparent ${
               isHomePage && !scrolled
-                ? "bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-400"
-                : "bg-gradient-to-r from-purple-600 via-pink-400 to-yellow-400"
+                ? "bg-gradient-to-r from-white via-indigo-300 to-white"
+                : "bg-gradient-to-r from-indigo-600 to-purple-600"
             }`}
           >
             TripVilla
+          </h1>
+          <span className="text-xs text-gray-500 font-medium">
+            Explore India Your Way
           </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
-          {[
-            { path: "/", label: "Home" },
-            { path: "/HotelFilter", label: "Hotels" },
-            { path: "/RestaurantFilter", label: "Restaurants" },
-            { path: "/FilterDes", label: "Travel" },
-            { path: "/feedback", label: "Feedback" },
-          ].map((link) => (
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
-              className={`text-lg font-semibold px-4 py-2 rounded-xl transition duration-300 ${
+              className={`relative text-[17px] font-semibold transition ${
                 isActive(link.path)
-                  ? "bg-purple-500 text-white shadow-lg"
+                  ? "text-indigo-600"
                   : isHomePage && !scrolled
-                  ? "text-white hover:bg-white/20"
-                  : "text-gray-800 hover:bg-purple-100 hover:text-purple-600"
+                  ? "text-white hover:text-indigo-300"
+                  : "text-gray-800 hover:text-indigo-600"
               }`}
             >
               {link.label}
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-indigo-500 transition-all duration-300 ${
+                  isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              />
             </Link>
           ))}
 
-          {/* Buttons */}
+          {/* LOGIN */}
           <Link to="/login">
-            <button
-              className={`font-bold px-4 py-2 rounded-xl shadow-md transition duration-300 ${
-                isHomePage && !scrolled
-                  ? "bg-white/20 text-white hover:bg-white/30"
-                  : "bg-purple-500 text-white hover:bg-purple-600"
-              }`}
-            >
+            <button className="px-5 py-2 rounded-lg font-semibold text-indigo-600 border border-indigo-600 hover:bg-indigo-600 hover:text-white transition">
               Login
             </button>
           </Link>
+
+          {/* SIGNUP */}
           <Link to="/signup">
-            <button
-              className={`px-4 py-2 rounded-xl shadow-md transition duration-300 ${
-                isHomePage && !scrolled
-                  ? "bg-yellow-400 text-white hover:bg-yellow-300"
-                  : "bg-yellow-400 text-white hover:bg-yellow-300 hover:text-purple-700"
-              }`}
-            >
+            <button className="px-5 py-2 rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md">
               Sign Up
             </button>
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className={`text-3xl focus:outline-none ${
-              isHomePage && !scrolled ? "text-white" : "text-gray-800"
-            }`}
-          >
-            {menuOpen ? "✕" : "☰"}
-          </button>
-        </div>
+        {/* MOBILE TOGGLE */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className={`md:hidden text-3xl ${
+            isHomePage && !scrolled ? "text-white" : "text-gray-900"
+          }`}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden bg-white/90 backdrop-blur-lg shadow-lg px-6 py-6 space-y-4 rounded-xl">
-          {[
-            { path: "/", label: "Home" },
-            { path: "/HotelFilter", label: "Hotels" },
-            { path: "/RestaurantFilter", label: "Restaurants" },
-            { path: "/FilterDes", label: "Travel" },
-            { path: "/feedback", label: "Feedback" },
-          ].map((link) => (
+        <div className="md:hidden bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4 shadow-lg rounded-b-2xl">
+          {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
               onClick={() => setMenuOpen(false)}
-              className="block text-gray-800 font-semibold px-4 py-2 rounded-xl hover:bg-purple-100 hover:text-purple-600 transition duration-300"
+              className="block text-lg font-semibold text-gray-800 hover:text-indigo-600 transition"
             >
               {link.label}
             </Link>
           ))}
+
           <Link to="/login" onClick={() => setMenuOpen(false)}>
-            <button className="w-full bg-purple-500 text-white font-bold px-4 py-2 rounded-xl shadow-md hover:bg-purple-600 transition duration-300">
+            <button className="w-full border border-indigo-600 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-600 hover:text-white transition">
               Login
             </button>
           </Link>
+
           <Link to="/signup" onClick={() => setMenuOpen(false)}>
-            <button className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl shadow-md hover:bg-yellow-300 hover:text-purple-700 transition duration-300">
+            <button className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition">
               Sign Up
             </button>
           </Link>

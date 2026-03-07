@@ -20,45 +20,57 @@ export default function Signup() {
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 🔹 Handle Submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Password Match Validation
-    if (data.password !== data.confirmpass) {
-      setPopupMessage("Passwords do not match");
-      setPopupType("error");
-      setTimeout(() => setPopupMessage(""), 3000);
-      return;
-    }
+  if (data.password !== data.confirmpass) {
+    setPopupMessage("Passwords do not match");
+    setPopupType("error");
+    setTimeout(() => setPopupMessage(""), 3000);
+    return;
+  }
 
-    try {
-      // 🔹 Backend API Call
-      const response = await axios.post("http://localhost:8080/user/signup", {
+  try {
+
+    // 1️⃣ Register User
+    const response = await axios.post(
+      "http://localhost:8080/api/signup",
+      {
         username: data.username,
         email: data.email,
         password: data.password,
-      });
-
-      // 🔹 Optional: Store token if backend returns it
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
       }
+    );
 
-      // 🔹 Success Message
-      setPopupMessage("Signup successful!");
-      setPopupType("success");
-      setTimeout(() => setPopupMessage(""), 3000);
+    // 2️⃣ Send OTP
+    await axios.post(
+      "http://localhost:8080/api/send-otp",
+      {
+        email: data.email
+      }
+    );
 
-      // 🔹 Redirect to Login after delay
-      setTimeout(() => navigate("/login"), 1500);
-    } catch (err) {
-      const msg = err.response?.data?.message || "Signup failed";
-      setPopupMessage(msg);
-      setPopupType("error");
-      setTimeout(() => setPopupMessage(""), 3000);
+    // 3️⃣ Optional Token Store
+    if (response.data.token) {
+      localStorage.setItem("token", response.data.token);
     }
-  };
+
+    // 4️⃣ Success Message
+    setPopupMessage("Signup successful! OTP sent to email.");
+    setPopupType("success");
+
+    setTimeout(() => {
+      setPopupMessage("");
+      navigate("/Varify");
+    }, 1500);
+
+  } catch (err) {
+    const msg = err.response?.data?.message || "Signup failed";
+    setPopupMessage(msg);
+    setPopupType("error");
+    setTimeout(() => setPopupMessage(""), 3000);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">

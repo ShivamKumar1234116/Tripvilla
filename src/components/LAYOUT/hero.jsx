@@ -10,12 +10,11 @@ const sentences = [
 
 const colors = ["#ffffff", "#facc15", "#34d399", "#f472b6", "#60a5fa"];
 
-// ✅ Direct playable .mp4 URLs from Pexels
-const videos = [
-  //"https://res.cloudinary.com/djcjheaun/video/upload/v1758738925/hvideo_uqyu0h.mp4",
-  "https://www.pexels.com/download/video/34197946/",
-  "https://cdn.pixabay.com/video/2021/09/11/88207-602915574_large.mp4"
-  
+// 🌄 Background Images
+const images = [
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+  "https://images.unsplash.com/photo-1493558103817-58b2924bce98",
 ];
 
 const container = {
@@ -27,20 +26,11 @@ const container = {
 };
 
 const wordAnimation = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 12 },
-  },
-};
-
-const paragraphAnimation = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, delay: 1.5 },
+    transition: { type: "spring", stiffness: 90, damping: 14 },
   },
 };
 
@@ -56,43 +46,37 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const currentSentence = sentences[index];
-  const currentColor = colors[colorIndex];
-
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* 🔥 Crossfade Background Videos */}
-      <div className="absolute inset-0">
-        {videos.map((vid, i) => (
-          <motion.video
-            key={i}
-            src={vid}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-screen object-cover absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: i === index % videos.length ? 1 : 0 }}
-            transition={{ duration: 1.5 }}
-          />
-        ))}
-      </div>
+      {/* 🌄 Animated Background Images */}
+      <AnimatePresence>
+        <motion.div
+          key={index}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${images[index % images.length]})` }}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}
+        />
+      </AnimatePresence>
 
-      {/* Overlay Content  bg-black/40*/}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-        {/* Animated Sentence */}
+      {/* 🌈 Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+
+      {/* ✨ Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            className="text-4xl sm:text-6xl font-bold drop-shadow-lg flex flex-wrap justify-center"
+            className="text-4xl sm:text-6xl font-extrabold flex flex-wrap justify-center drop-shadow-xl"
             variants={container}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            style={{ color: currentColor }}
+            style={{ color: colors[colorIndex] }}
           >
-            {currentSentence.split(" ").map((word, i) => (
+            {sentences[index].split(" ").map((word, i) => (
               <motion.span key={i} variants={wordAnimation} className="mr-2">
                 {word}
               </motion.span>
@@ -100,16 +84,24 @@ const HeroSection = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Static Paragraph */}
         <motion.p
-          className="mt-4 text-lg sm:text-xl text-white max-w-2xl drop-shadow font-bold"
-          variants={paragraphAnimation}
-          initial="hidden"
-          animate="visible"
+          className="mt-6 text-lg sm:text-xl text-white max-w-2xl font-semibold"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
         >
           Explore handpicked villas, cozy getaways, and delicious restaurants
           around the globe — all in one place.
         </motion.p>
+
+        {/* 🔥 CTA Button */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="mt-8 px-12 py-3 rounded-full bg-yellow-400 text-black font-extrabold shadow-lg"
+        >
+          Explore Now
+        </motion.button>
       </div>
     </div>
   );
