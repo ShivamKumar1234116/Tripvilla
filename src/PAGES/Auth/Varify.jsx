@@ -21,7 +21,7 @@ function Varify() {
       setMessage("");
 
       const res = await axios.post(
-        "http://localhost:8080/api/verify-email",
+        "https://tripvilla-backend.vercel.app/api/verify-email",
         {
           email: email,
           otp: otp
