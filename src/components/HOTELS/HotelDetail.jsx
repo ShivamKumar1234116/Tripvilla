@@ -14,7 +14,7 @@ const HotelDetail = () => {
     const fetchData = async () => {
       setLoading(true); // 🔹 Start loader
       try {
-        const response = await axios.get(`http://localhost:8080/hotel/${id}`);
+        const response = await axios.get(`https://tripvilla-backend.vercel.app/hotel/${id}`);
         // 🔹 Artificial 6 second delay
         setTimeout(() => {
           setData(response.data.data);
