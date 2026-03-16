@@ -14,7 +14,7 @@ const RestaurantDetail = () => {
     const fetchData = async () => {
       setLoading(true); // start loader
       try {
-        const response = await axios.get(`http://localhost:8080/restaurant/${id}`);
+        const response = await axios.get(`https://tripvilla-backend.vercel.app/restaurant/${id}`);
         // Artificial 6-second delay for loader
         setTimeout(() => {
           setData(response.data.data);
