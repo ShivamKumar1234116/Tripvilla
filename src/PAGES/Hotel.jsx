@@ -4,14 +4,14 @@ import HotelList from "../components/HOTELS/HotelList";
 import TrueFocus from "../components/Ui/TrueFocus";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import img from "../assets/HOTELIMG/hotelchat.png"
 export default function Hotel() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/hotel/all");
+      const response = await axios.get("https://tripvilla-backend.vercel.app/hotel/all");
       setHotels(response.data);
       setLoading(false);
     } catch (err) {
@@ -29,7 +29,7 @@ export default function Hotel() {
       <div
         className="relative w-[95%] md:w-[90%] h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] bg-cover bg-center rounded-sm overflow-hidden shadow-2xl"
         style={{
-          backgroundImage: "url('./src/assets/HOTELIMG/hotelchat.png')",
+          backgroundImage: `url(${img})`,
         }}
       >
         {/* Dark Gradient Overlay */}

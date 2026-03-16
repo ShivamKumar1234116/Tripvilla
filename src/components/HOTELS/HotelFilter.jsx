@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import FilterCard from './FilterCard';
 import Loader from "../Ui/Loader"; // ✅ Loader import
-
+import img from "../../assets/HOTELIMG/hotelfilter.jpg"
 const HotelFilter = () => {
   const headings = [
     "🏨 Find Your Perfect Stay",
@@ -40,7 +40,7 @@ const HotelFilter = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/hotel/all/${filter.location}/${price1}/${price2}`,
+        `https://tripvilla-backend.vercel.app/hotel/all/${filter.location}/${price1}/${price2}`,
         { withCredentials: true }
       );
 
@@ -71,7 +71,7 @@ const HotelFilter = () => {
       {/* Hero + Filter Section */}
       <div
         className="relative w-full h-[70vh] bg-cover bg-center flex items-center justify-center mt-20"
-        style={{ backgroundImage: "url('./src/assets/HOTELIMG/hotelfilter.jpg')" }}
+        style={{ backgroundImage: `url(${img})`}}
       >
         <div className="absolute top-12 text-center z-10 px-4">
           <AnimatePresence mode="wait">

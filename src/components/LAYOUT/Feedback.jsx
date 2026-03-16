@@ -18,7 +18,7 @@ const FeedbackForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/feedback", {
+      await axios.post("https://tripvilla-backend.vercel.app/feedback", {
         name: formData.name,
         email: formData.email,
         rating: Number(formData.rating),

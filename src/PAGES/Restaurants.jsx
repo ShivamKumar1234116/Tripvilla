@@ -4,6 +4,7 @@ import TrueFocus from "../components/Ui/TrueFocus";
 import RestaurantList from '../components/RESTAURANTS/RestaurantList';
 import axios from "axios";
 import { useEffect, useState } from "react";
+import img from "../assets/restaurantsimage/restchat.png"
 
 export default function Restaurants() {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,7 +12,7 @@ export default function Restaurants() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/restaurant/all");
+      const response = await axios.get("https://tripvilla-backend.vercel.app/restaurant/all");
       const data = response.data.data;
       setRestaurants(data);
       setLoading(false);
@@ -30,7 +31,7 @@ export default function Restaurants() {
       <div
         className="relative w-[95%] lg:w-[90%] h-[350px] md:h-[450px] lg:h-[550px] bg-cover bg-center rounded-sm overflow-hidden shadow-2xl"
         style={{
-          backgroundImage: "url('./src/assets/restaurantsimage/restchat.png')",
+          backgroundImage:`url(${img})`,
         }}
       >
         {/* Dark Gradient Overlay */}
