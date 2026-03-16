@@ -1,3 +1,13 @@
 
 @import "tailwindcss";
 
+.slick-slide {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0.6;
+  transform: scale(0.9);
+}
+
+.slick-center {
+  opacity: 1 !important;
+  transform: scale(1.05);
+}

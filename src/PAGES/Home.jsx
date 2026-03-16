@@ -5,7 +5,7 @@ import HeroSection from '../components/LAYOUT/hero'
 
 import Aboutus from '../components/LAYOUT/Aboutus'
 import Feedback from '../components/LAYOUT/Feedback'
-
+import PackageList from './Packages/PackageList'
 
 
 
@@ -19,6 +19,9 @@ import FilterDes from '../components/TRAVELS/FilterDes'
 import Hotel from './Hotel'
 import Restaurants from './Restaurants'
 import Travel from './Travel'
+import PackagesHome from './Packages/PackagesHome'
+
+
 
 
 
@@ -30,10 +33,10 @@ const Home = () => {
 
       <HeroSection />
 
+<PackageList />
 
 
-
-
+<PackagesHome />
 
 
       <Hotel />

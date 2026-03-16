@@ -12,7 +12,7 @@ import FilterDes from './components/TRAVELS/FilterDes';
 import Login from './PAGES/Auth/Login';
 import Signup from './PAGES/Auth/Signup';
 import RestaurantDetail from './components/RESTAURANTS/RestaurantDetail';
-
+import Varify from './PAGES/Auth/Varify';
 function App() {
   return (
     <Router>
@@ -27,6 +27,7 @@ function App() {
           <Route path="hotel/HotelDetail/:id" element={<HotelDetail />} />
           <Route path="restaurant/RestaurantDetail/:id" element={<RestaurantDetail />} />
           <Route path="Aboutus" element={<Aboutus />} />
+          <Route path="Varify" element={<Varify />} />
         </Route>
 
         {/* ✅ Auth pages with only Navbar (no Footer) */}
