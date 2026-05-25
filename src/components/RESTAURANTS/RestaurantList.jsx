@@ -11,7 +11,7 @@ function RestaurantList({data}) {
 	
 	 
 <div className="w-full flex flex-wrap justify-center gap-8 px-4">
-    {data.slice(0,4).map((restaur)=>(
+    {data.slice(4,8).map((restaur)=>(
 
   
         <RestaurantsCard
