@@ -34,7 +34,7 @@ export default function Signup() {
 
     // 1️⃣ Register User
     const response = await axios.post(
-      "http://localhost:8080/api/signup",
+      `${import.meta.env.VITE_URL}/api/signup`,
       {
         username: data.username,
         email: data.email,
@@ -44,7 +44,7 @@ export default function Signup() {
 
     // 2️⃣ Send OTP
     await axios.post(
-      "http://localhost:8080/api/send-otp",
+      `${import.meta.env.VITE_URL}/api/send-otp`,
       {
         email: data.email
       }

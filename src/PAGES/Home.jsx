@@ -33,7 +33,7 @@ const Home = () => {
 
       <HeroSection />
 
-<PackageList />
+{/* <PackageList /> */}
 
 
 <PackagesHome />

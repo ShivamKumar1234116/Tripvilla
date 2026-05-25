@@ -14,7 +14,7 @@ const RestaurantDetail = () => {
     const fetchData = async () => {
       setLoading(true); // start loader
       try {
-        const response = await axios.get(`http://localhost:8080/restaurant/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_URL}/restaurant/${id}`);
         // Artificial 6-second delay for loader
         setTimeout(() => {
           setData(response.data.data);
@@ -63,7 +63,7 @@ const RestaurantDetail = () => {
             <img
               src={data.images?.[0]?.url || "https://png.pngtree.com/background/20230604/original/pngtree-expensive-modern-restaurant-and-bar-hall-picture-image_2873154.jpg"}
               alt="restaurant-main"
-              className="col-span-2 w-full h-80 md:h-[28rem] object-cover rounded-2xl shadow-2xl hover:scale-[1.01] transition-transform duration-300"
+              className="md:col-span-2 w-full h-80 md:h-[28rem] object-cover rounded-2xl shadow-2xl hover:scale-[1.01] transition-transform duration-300"
             />
             <div className="grid grid-rows-2 gap-4">
               <img
@@ -129,8 +129,8 @@ const RestaurantDetail = () => {
             </div>
           </div>
 
-          <div className="h-30 w-full border border-pink-500 text-md font-bold my-10 mx-10 text-purple-500">
-            View on Map
+          <div className="h-32 w-full border border-pink-300 bg-pink-50/50 backdrop-blur-sm rounded-2xl flex items-center justify-center text-lg font-bold my-10 text-pink-600 shadow-inner max-w-7xl mx-auto">
+            📍 View on Map
           </div>
         </div>
       )}

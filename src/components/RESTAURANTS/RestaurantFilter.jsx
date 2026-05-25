@@ -40,7 +40,7 @@ const RestaurantFilter = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/restaurant/all/${filter.location}/${price1}/${price2}`
+        `${import.meta.env.VITE_URL}/restaurant/all/${filter.location}/${price1}/${price2}`
       );
 
       // 🔹 Artificial 6-second delay for loader

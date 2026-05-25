@@ -118,13 +118,13 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <Link to="/login" onClick={() => setMenuOpen(false)}>
+          <Link to="/login" onClick={() => setMenuOpen(false)} className="block w-full">
             <button className="w-full border border-indigo-600 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-600 hover:text-white transition">
               Login
             </button>
           </Link>
 
-          <Link to="/signup" onClick={() => setMenuOpen(false)}>
+          <Link to="/signup" onClick={() => setMenuOpen(false)} className="block w-full">
             <button className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition">
               Sign Up
             </button>

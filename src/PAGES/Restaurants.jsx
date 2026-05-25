@@ -11,7 +11,7 @@ export default function Restaurants() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/restaurant/all");
+      const response = await axios.get(`${import.meta.env.VITE_URL}/restaurant/all`);
       const data = response.data.data;
       setRestaurants(data);
       setLoading(false);

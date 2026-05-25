@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 
 const Aboutus = () => {
   return (
-    <div className="w-full p-6 md:p-12 md:px-50 mt-5 bg-gradient-to-tr from-indigo-50 via-pink-30 to-purple-50">
-      {/* Intro Section */}
+    <div className="w-full p-6 md:p-12 mt-5 bg-gradient-to-tr from-indigo-50 via-pink-30 to-purple-50">
+      <div className="max-w-7xl mx-auto">
+        {/* Intro Section */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -68,8 +69,7 @@ const Aboutus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.15 }}
             viewport={{ once: true }}
-            className="p-6 rounded-xl shadow-md text-center bg-gradient-to-tr from-indigo-50 via-pink-50 to-purple-50 border border-gray-100 h-30 
-                       transform transition duration-300 hover:-translate-y-2 hover:shadow-lg"
+            className="p-6 rounded-xl shadow-md text-center bg-gradient-to-tr from-indigo-50 via-pink-50 to-purple-50 border border-gray-100 transform transition duration-300 hover:-translate-y-2 hover:shadow-lg"
           >
             <h3 className="text-lg font-semibold text-purple-500">
               {card.icon} {card.title}
@@ -130,6 +130,7 @@ const Aboutus = () => {
           ))}
         </div>
       </motion.div>
+      </div>
     </div>
   );
 };
