@@ -20,7 +20,7 @@ function RestaurantList({data}) {
           location={restaur.location.city}
           price={restaur.price}
           name={restaur.name}
-          img={restaur.images[0]?.url || "https://tse2.mm.bing.net/th/id/OIP.h1ov-jfEPJieZEaHPcqd6AHaE8?pid=Api&P=0&h=180"}
+          img={restaur.images?.[0]?.url || "https://tse2.mm.bing.net/th/id/OIP.h1ov-jfEPJieZEaHPcqd6AHaE8?pid=Api&P=0&h=180"}
           rating={restaur.rating}
           desc={restaur.description}
         />

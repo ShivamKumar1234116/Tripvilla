@@ -18,7 +18,7 @@ const FeedbackForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post("https://tripvilla-backend.vercel.app/feedback", {
+      await axios.post(`${import.meta.env.VITE_URL}/feedback`, {
         name: formData.name,
         email: formData.email,
         rating: Number(formData.rating),

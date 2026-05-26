@@ -40,7 +40,7 @@ const HotelFilter = () => {
 
     try {
       const response = await axios.get(
-        `https://tripvilla-backend.vercel.app/hotel/all/${filter.location}/${price1}/${price2}`,
+        `${import.meta.env.VITE_URL}/hotel/all/${filter.location}/${price1}/${price2}`,
         { withCredentials: true }
       );
 

@@ -21,7 +21,7 @@ function Varify() {
       setMessage("");
 
       const res = await axios.post(
-        "https://tripvilla-backend.vercel.app/api/verify-email",
+        `${import.meta.env.VITE_URL}/api/verify-email`,
         {
           email: email,
           otp: otp
@@ -44,7 +44,7 @@ function Varify() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
 
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-96 text-center">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md mx-4 text-center">
 
         <h2 className="text-2xl font-bold mb-4">
           Email Verification

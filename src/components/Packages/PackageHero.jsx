@@ -53,7 +53,7 @@ function PackageHero() {
           </div>
 
           {/* Dotted Decoration */}
-          <div className="hidden lg:block absolute bottom-1 right-8 w-30 h-30 ">
+          <div className="hidden lg:block absolute bottom-1 right-8 w-32 h-32 ">
              <img
               src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da"
               alt="India Tour"
